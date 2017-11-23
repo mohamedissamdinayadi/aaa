@@ -1,0 +1,121 @@
+<div class="row">
+    <div class="col-md-6">
+      <a routerLink="/gestionClub" href="#" class="btn btn-link"><i class="fa fa-arrow-circle-o-left"></i> Back To Dashboard</a>
+    </div>
+    <div class="col-md-6">
+        
+      </div>
+  </div>
+  <br>
+  <div class="card">
+    <div class="card-header">
+      Add Client
+    </div>
+    <div class="card-block">
+      <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <div class="form-group">
+          <label for="nomClub">nomClub</label>
+          <input 
+            type="text"
+            class="form-control  border-input"
+            [(ngModel)]="club.nomClub"
+            name="nomClub"
+            #clientFirstName="ngModel"
+            minlength="2"
+            required
+          >
+          <div *ngIf="clientFirstName.errors?.required && clientFirstName.touched" class="alert alert-danger">
+            First name is required
+          </div>
+          <div *ngIf="clientFirstName.errors?.minlength && clientFirstName.touched" class="alert alert-danger">
+            Must be at least 2 characters
+          </div>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input 
+              type="text"
+              class="form-control  border-input"
+              [(ngModel)]="club.description"
+              name="description"
+              #descriptionclub="ngModel"
+              minlength="2"
+              required
+            >
+            <div *ngIf="descriptionclub.errors?.required && descriptionclub.touched" class="alert alert-danger">
+              First name is required
+            </div>
+            <div *ngIf="descriptionclub.errors?.minlength && descriptionclub.touched" class="alert alert-danger">
+              Must be at least 2 characters
+            </div>
+          </div>
+
+
+        <div class="form-group">
+            <label for="emailclub">email</label>
+            <input 
+              type="text"
+              class="form-control  border-input"
+              [(ngModel)]="club.email"
+              name="email"
+              #emailclub="ngModel"
+              minlength="2"
+              required
+            >
+            <div *ngIf="emailclub.errors?.required && emailclub.touched" class="alert alert-danger">
+              First name is required
+            </div>
+            <div *ngIf="emailclub.errors?.minlength && emailclub.touched" class="alert alert-danger">
+              Must be at least 2 characters
+            </div>
+          </div>
+
+         
+
+            <div class="form-group">
+                <label for="universite">universite</label>
+                <input 
+                  type="text"
+                  class="form-control  border-input"
+                  [(ngModel)]="club.universite"
+                  name="universite"
+                  #universiteclub="ngModel"
+                  minlength="2"
+                  required
+                >
+                <div *ngIf="universiteclub.errors?.required && universiteclub.touched" class="alert alert-danger">
+                  First name is required
+                </div>
+                <div *ngIf="universiteclub.errors?.minlength && universiteclub.touched" class="alert alert-danger">
+                  Must be at least 2 characters
+                </div>
+              </div>
+
+            <!--  <div class="form-group">
+                  <label for="balance">balance</label>
+                  <input 
+                    type="text"
+                    class="form-control  border-input"
+                    [(ngModel)]="club.balance"
+                    name="balance"
+                    #balanceclub="ngModel"
+                    minlength="2"
+                    required
+                  >
+                  <div *ngIf="balanceclub.errors?.required && balanceclub.touched" class="alert alert-danger">
+                    First name is required
+                  </div>
+                  <div *ngIf="balanceclub.errors?.minlength && balanceclub.touched" class="alert alert-danger">
+                    Must be at least 2 characters
+                  </div>
+                </div>
+              -->
+        
+  
+      
+  
+        <input type="submit" class="btn btn-primary btn-block" value="Submit">
+      </form>
+    </div>
+  </div>

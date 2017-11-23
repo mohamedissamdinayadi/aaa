@@ -1,0 +1,107 @@
+
+
+ 
+ 
+    <a routerLink="/addClub" href="#" class="btn btn-success "><i class="fa fa-plus"></i> Add New Club</a>
+    <hr>
+
+        <div  *ngIf="clubs?.length > 0;else noClubs"   >
+                <div class="card card-user col-lg-4 col-md-5 col-ms-5 col-md-offset-1 "    *ngFor="let club of clubs" >
+                      
+                    <div class="image">
+                        <img src="assets/img/background.jpg" alt="..."/>
+                    </div>
+
+                    <div class="content"  >
+                           
+                        <div class="author">
+                          <img class="avatar border-white" src="assets/img/faces/face-2.jpg" alt="..."/>
+                          <h4 class="title"> {{club.nomClub}}<br />
+                             <a href="#"><small>{{club.email }}</small></a>
+                          </h4>
+                        </div>
+                        <p class="description text-center">
+                                {{club.description}}
+                        </p>
+                       
+                  
+
+                    </div> 
+                    <hr>
+                    <div class="text-center">
+                        <div class="row">
+                            <div class="col-md-3 col-md-offset-1">
+                                <h5>12<br /><small>Vu</small></h5>
+                            </div>
+                            <div class="col-md-4">
+                                <h5>5<br /><small>Member</small></h5>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>{{club.balance }}<br /><small>Balance</small></h5>
+                            </div>
+                            <div class="col-md-4">
+                                    <a [routerLink]="['/clubDetail/'+club.$key]" href="" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-circle-o-right"></i> Details</a> 
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+ 
+ 
+
+
+
+
+
+
+
+             
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Liste des Club</h4>
+                        <p class="category">la liste de club</p>
+                        
+                    </div>
+                    
+                    <div class="content table-responsive table-full-width">
+                       
+                        <a routerLink="/addClub" href="#" class="btn btn-success "><i class="fa fa-plus"></i> Add New Club  </a>
+                        
+                      <table class="table table-striped"  *ngIf="clubs?.length > 0;else noClubs">
+                            <thead  >
+                                <tr>
+                                    <th>ID</th>
+                                    <th>NomClub</th>
+                                    <th>Description</th>
+                                    <th>Email</th>
+                                    <th>University</th>
+                                    <th>Balance</th>
+                                  </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let club of clubs">
+                                    <td>{{club.$key}}</td>
+                                    <td>{{club.nomClub}} </td>
+                                    <td>{{club.description}}</td>
+                                    <td>{{club.email }}</td>
+                                    <td>{{club.universite }}</td>
+                                    <td>{{club.balance }}</td>
+                                    <td><a [routerLink]="['/clubDetail/'+club.$key]" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-circle-o-right"></i> Details</a></td>
+                                  </tr>
+                            </tbody>
+                        </table>
+                        <ng-template #noClubs>
+                            <hr>
+                            <h5>There are no clients in the system</h5>
+                          </ng-template>
+    
+                    </div>
+                </div>
+            </div>  
+            </div>
+    
+      
