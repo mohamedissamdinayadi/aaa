@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router'
-import { Club } from '../models/club.module';
+import { Club } from '../models/club';
 import { ClubService } from '../cervices/club.service';
-import { SettingsService } from '../cervices/settings.service';
-
+ 
 @Component({
   selector: 'app-add-club',
   templateUrl: './add-club.component.html',
@@ -18,22 +17,19 @@ export class AddClubComponent implements OnInit {
     email:'',
     universite:'', 
     phone:'',
-    balance:0 ,
+   
   }
   
-  //disableBalanceOnAdd : boolean = false ; 
-  
+   
   constructor(
     public flashMessagesService: FlashMessagesService,
     public router : Router,
     public ClubService: ClubService,
-    public settingsService: SettingsService
-
+ 
   ) { }
 
   ngOnInit() {
- // this.disableBalanceOnAdd = this.settingsService.getSettings().disableBalanceOnAdd;
-    
+     
   }
   onSubmit({value, valid}: {value:Club , valid:boolean}){
    
@@ -45,7 +41,7 @@ export class AddClubComponent implements OnInit {
     else
     {
       this.ClubService.newClub(value);
-      this.flashMessagesService.show('new client added', {cssClass:'alert-success', timeout : 4000 }) ;
+      this.flashMessagesService.show('new Club added', {cssClass:'alert-success', timeout : 4000 }) ;
       this.router.navigate(['gestionClub']); 
       
     }

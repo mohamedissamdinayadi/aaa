@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
 import { AuthService } from '../cervices/auth.service';
-
+ 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     this.authService.login(this.email, this.password).then((res)=>{
       this.flashMessagesService.show('you are logged in', {cssClass:'alert-success', timeout : 4000 }) ;
-      this.router.navigate(['/']); 
+      this.router.navigate(['gestionClub']); 
     })
     .catch((err)=>{
       this.flashMessagesService.show(err.message, {cssClass:'alert-danger', timeout : 4000 }) ;

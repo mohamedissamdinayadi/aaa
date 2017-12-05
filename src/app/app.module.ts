@@ -2,15 +2,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+import{FlexLayoutModule}from '@angular/flex-layout';
+
 import { FormsModule } from '@angular/forms';
 //fire base
 
 import {AngularFireModule} from 'angularfire2';
-import {AngularFireDatabase} from 'angularfire2/database-deprecated';
+import {AngularFireDatabase, AngularFireDatabaseModule  } from 'angularfire2/database-deprecated';
 import {AngularFireAuth} from 'angularfire2/auth';
  
+ 
+ 
+
 import { AppComponent } from './app.component';
-import { AppRoutes } from './app.routing';
+ import { AppRoutes } from './app.routing';
 import { SidebarModule } from './sidebar/sidebar.module';
  
 import { NavbarModule} from './shared/navbar/navbar.module';
@@ -28,8 +33,7 @@ import { UpgradeComponent }   from './upgrade/upgrade.component';
 import { GestionClubComponent } from './gestion-club/gestion-club.component';
 import { ClubService } from 'app/cervices/club.service';
 import { AddClubComponent } from './add-club/add-club.component';
-import { SettingsService } from 'app/cervices/settings.service';
-
+ 
 import { FlashMessagesModule } from 'angular2-flash-messages/module/module';
  
 import { ClubDetailComponent } from './club-detail/club-detail.component';
@@ -37,17 +41,29 @@ import { EditClubComponent } from './edit-club/edit-club.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthService } from './cervices/auth.service';
-//import { AuthGuard } from './guards/auth.gurads';
-//import { RegisterGuard } from './guards/register.guard';
+ 
+import { UploadFormComponent } from './uploads/upload-form/upload-form.component';
+import { UploadService } from './uploads/shared/upload.service';
+import { Club } from './models/club';
+
+
+
+
+
+ import { AuthGuard } from './guards/auth.gurads';
+ 
+ 
+
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyAAxcxoBpvef_qgR2xXvDAxqcR502BYWgU",
-  authDomain: "clubs-16594.firebaseapp.com",
-  databaseURL: "https://clubs-16594.firebaseio.com",
-  storageBucket: "clubs-16594.appspot.com",
-  messagingSenderId: "308911584839"
+  apiKey: "AIzaSyCHWUjSEw0OCk5z1qp-2YbTADFSEUO2tGM",
+  authDomain: "clubs-70366.firebaseapp.com",
+  databaseURL: "https://clubs-70366.firebaseio.com",
+  projectId: "clubs-70366",
+  storageBucket: "clubs-70366.appspot.com",
+  messagingSenderId: "999581670273"
+}
  
- }
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,23 +77,35 @@ export const firebaseConfig = {
     UpgradeComponent,
     GestionClubComponent,     
     AddClubComponent,
- 
+    
      ClubDetailComponent,
  
      EditClubComponent,
  
      LoginComponent,
  
-     RegisterComponent
+     RegisterComponent,
+ 
+    
+     UploadFormComponent,
+     
+ 
+     
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    
+    
     RouterModule.forRoot(AppRoutes),
     SidebarModule,
     NavbarModule,
+    AngularFireDatabaseModule,
+    
+    
     FlashMessagesModule, 
     FixedPluginModule,
+    FlexLayoutModule,
     AngularFireModule.initializeApp(firebaseConfig),
     NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBr-tgUtpm8cyjYVQDrjs8YpZH7zBNWPuY'})
 
@@ -85,11 +113,14 @@ export const firebaseConfig = {
   providers: [
     AngularFireDatabase,
    ClubService,
-   SettingsService,
+  
+
    AngularFireAuth,
-   //AuthGuard,
-   //RegisterGuard,
+    AuthGuard,
    AuthService,
+   UploadService,
+
+
  
    
    

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
 
   constructor(public afAuth :AngularFireAuth ) { }
+  
   login(email:string, password:string){
     return new Promise((resolve, reject)=>{
       this.afAuth.auth.signInWithEmailAndPassword(email, password).

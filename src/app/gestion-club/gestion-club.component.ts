@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClubService } from '../cervices/club.service';
-import { Club } from '../models/club.module';
+import { Club } from '../models/club';
 import { log } from 'util';
  
 @Component({

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database-deprecated' ; 
 import { Observable } from 'rxjs';
-import { Club } from '../models/club.module';
+import { Club } from '../models/club';
 
 @Injectable()
 export class ClubService {

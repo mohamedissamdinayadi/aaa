@@ -15,40 +15,49 @@ import { ClubDetailComponent } from './club-detail/club-detail.component';
 import { EditClubComponent } from './edit-club/edit-club.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { UploadFormComponent } from './uploads/upload-form/upload-form.component';
+
+ import { AuthGuard } from './guards/auth.gurads';
  
- 
+
 export const AppRoutes: Routes = [
     {
-        path: '',
-        redirectTo: 'dashboard',
+        path: 'user',
+        redirectTo: 'login',
         pathMatch: 'full',
     },
  
 
     {
         path: 'gestionClub',
-        component: GestionClubComponent , 
+        component: GestionClubComponent , canActivate:[AuthGuard]
     },
     {
         path: 'addClub',
-        component: AddClubComponent, 
+        component: AddClubComponent, canActivate:[AuthGuard] 
     },
     {
         path: 'clubDetail/:id',
-        component: ClubDetailComponent
+        component: ClubDetailComponent,canActivate:[AuthGuard] 
     },
     {
         path: 'editClub/:id',
-        component: EditClubComponent
+        component: EditClubComponent,canActivate:[AuthGuard] 
     },
     {
-        path: 'login/:id',
+        path: 'login',
         component: LoginComponent
     },
     {
-        path: 'register/:id',
+        path: 'register',
         component: RegisterComponent
     },
+    {
+        path: 'uploads/upload-form',
+        component: UploadFormComponent ,canActivate:[AuthGuard] 
+    },
+
+
     {
         path: 'user',
         component: UserComponent

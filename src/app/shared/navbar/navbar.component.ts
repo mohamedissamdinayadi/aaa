@@ -2,6 +2,12 @@ import { Component, OnInit, Renderer, ViewChild, ElementRef } from '@angular/cor
 import { ROUTES } from '../../sidebar/sidebar.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+ 
+ 
+import { FlashMessagesService } from 'angular2-flash-messages';
+ 
+import { AuthService } from '../../cervices/auth.service';
+import 'rxjs/add/operator/map';
 
 @Component({
     moduleId: module.id,
@@ -16,9 +22,18 @@ export class NavbarComponent implements OnInit{
     private toggleButton;
     private sidebarVisible: boolean;
 
+    isLoggedIn:boolean;
+    loggedInUser:string;
+    showRegister:boolean;
+  
+  
     @ViewChild("navbar-cmp") button;
 
-    constructor(location:Location, private renderer : Renderer, private element : ElementRef) {
+    constructor(location:Location, private renderer : Renderer, private element : ElementRef,
+        private authService:AuthService,
+        private router:Router,
+        private flashMessagesService: FlashMessagesService,
+             )         {
         this.location = location;
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
@@ -28,6 +43,20 @@ export class NavbarComponent implements OnInit{
         this.listTitles = ROUTES.filter(listTitle => listTitle);
         var navbar : HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
+    
+        this.authService.getAuth().subscribe(auth=>{
+            if (auth){
+              this.isLoggedIn=true;
+              this.loggedInUser=auth.email;
+      
+            }else{
+              this.isLoggedIn=false;
+            }
+           });
+    
+    
+    
+    
     }
     getTitle(){
         var titlee = window.location.pathname;
@@ -55,4 +84,11 @@ export class NavbarComponent implements OnInit{
             body.classList.remove('nav-open');
         }
     }
+
+    onLogoutClick(){
+        this.authService.logout();
+        this.flashMessagesService.show('you are logged out', {cssClass:'alert-success', timeout : 4000 }) ;
+        this.router.navigate(['/login']); 
+      }
+    
 }

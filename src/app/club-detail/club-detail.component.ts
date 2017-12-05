@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClubService} from '../cervices/club.service';
-import { Club } from '../models/club.module';
+import { Club } from '../models/club';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database-deprecated' ; 
 
 import { Router , ActivatedRoute, Params} from '@angular/router';
@@ -11,11 +11,11 @@ import { FlashMessagesService} from 'angular2-flash-messages';
   styleUrls: ['./club-detail.component.css']
 })
 export class ClubDetailComponent implements OnInit {
-  clients: FirebaseListObservable<any[]>;
-  client: FirebaseObjectObservable<any>;
+  clubs: FirebaseListObservable<any[]>;
+  club: FirebaseObjectObservable<any>;
 
   id:string;
-  club:Club;
+  club1:Club;
  
   constructor(   public  clubService: ClubService,
     public router :Router,
@@ -35,15 +35,15 @@ export class ClubDetailComponent implements OnInit {
     });
   }
     updateBalance(id:string){
-      this.clubService.updateClub(this.id, this.club);
+      this.clubService.updateClub(this.id, this.club1);
       this.flashMessagesService.show('balance updated' , {cssClass:'alert-success' , timout:4000});
-      this.router.navigate(['/client/'+ this.id]);
+      this.router.navigate(['/club/'+ this.id]);
     }
 
     onDeleteClick(id:string){
       if(confirm("are you sure to delete?")){
         this.clubService.deleteClub(this.id);
-//this.flashMessagesService.show('client deleted' , {cssClass:'alert-success' , timout:4000});
+   this.flashMessagesService.show('Club deleted' , {cssClass:'alert-success' , timout:4000});
         this.router.navigate(['/gestionClub']);
       }
     
