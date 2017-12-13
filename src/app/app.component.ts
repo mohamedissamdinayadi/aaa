@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SidebarService } from './cervices/sidebar.service';
 
 declare var $:any;
 
@@ -8,4 +9,10 @@ declare var $:any;
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent{}
+export class AppComponent{
+
+  constructor(private sidebarService: SidebarService){
+    
+  }
+
+}

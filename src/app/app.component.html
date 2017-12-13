@@ -1,9 +1,9 @@
 <div class="wrapper">
-    <div class="sidebar" data-background-color="black" data-active-color="danger">
-        <sidebar-cmp></sidebar-cmp>
-    </div>
     
-    <div class="main-panel">
+        <sidebar-cmp></sidebar-cmp>
+    
+    
+    <div class="main-panel" [ngClass]="{'hide-sidebar': !sidebarService.show}">
         <navbar-cmp>   </navbar-cmp>
         <div class="content">
                 <flash-messages></flash-messages>

@@ -53,7 +53,8 @@ import { Club } from './models/club';
  import { AuthGuard } from './guards/auth.gurads';
  
  
-
+ import { SidebarService } from './cervices/sidebar.service';
+ 
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCHWUjSEw0OCk5z1qp-2YbTADFSEUO2tGM",
@@ -113,6 +114,7 @@ export const firebaseConfig = {
   providers: [
     AngularFireDatabase,
    ClubService,
+   SidebarService,
   
 
    AngularFireAuth,

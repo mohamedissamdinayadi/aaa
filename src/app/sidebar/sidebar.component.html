@@ -1,14 +1,15 @@
 
-<div class="sidebar-wrapper">
-    <div class="logo">
-        <a href="https://www.creative-tim.com" class="simple-text">
-            <div class="logo-img">
-                <img src="../../assets/img/angular2-logo.png" alt="">
-            </div>
-            Creative Tim
-        </a>
-    </div>
-    
+<div class="sidebar" data-background-color="white" data-active-color="danger" *ngIf="sidebarService.show">        
+    <div class="sidebar-wrapper">
+        <div class="logo">
+            <a href="https://www.creative-tim.com" class="simple-text">
+                <div class="logo-img">
+                    <img src="../../assets/img/angular2-logo.png" alt="">
+                </div>
+                Gestion de Hackathon
+            </a>
+        </div>
+        <div>
     <ul class="nav">
         
             <li *ngIf="isNotMobileMenu()">
@@ -53,4 +54,6 @@
         </li>
         
     </ul>
+</div>
+</div>
 </div>

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ClubService } from '../cervices/club.service';
 import { Club } from '../models/club';
 import { log } from 'util';
- 
+import { SidebarService } from '../cervices/sidebar.service';
+
 @Component({
   selector: 'app-gestion-club',
   templateUrl: './gestion-club.component.html',
@@ -11,7 +12,8 @@ import { log } from 'util';
 export class GestionClubComponent implements OnInit {
   clubs:any[];
   constructor(
-    public clubService:ClubService
+    public clubService:ClubService,
+    private sidebarService:SidebarService
   ) { }
 
  
@@ -29,5 +31,9 @@ export class GestionClubComponent implements OnInit {
 
 
   
+  }
+
+  ngAfterViewInit() {
+    this.sidebarService.show = true;
   }
 }

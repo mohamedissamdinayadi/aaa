@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
 import { AuthService } from '../cervices/auth.service';
- 
+import { SidebarService } from '../cervices/sidebar.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,10 +15,14 @@ export class LoginComponent implements OnInit {
   constructor(
     private router :Router,
     private authService:AuthService,
-    private flashMessagesService: FlashMessagesService
+    private flashMessagesService: FlashMessagesService,
+    private sidebarService:SidebarService
   ) { }
 
   ngOnInit() {
+  }
+  ngAfterViewInit() {
+    this.sidebarService.show = false;
   }
 
   onSubmit(){
@@ -31,4 +36,7 @@ export class LoginComponent implements OnInit {
 
     })
   }
+
+
+
 }
